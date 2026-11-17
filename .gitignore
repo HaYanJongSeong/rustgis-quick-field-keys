@@ -1,0 +1,5 @@
+/target/
+/test-artifacts/
+/*.rgplugin
+/*_백업*.md
+__pycache__/

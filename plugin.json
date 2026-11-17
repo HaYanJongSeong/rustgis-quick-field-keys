@@ -1,0 +1,442 @@
+{
+  "id": "quick-field-keys",
+  "name": "Quick Field Keys",
+  "version": "0.1.0",
+  "description": "Navigate and edit a designated layer with typed presets, field locks, feature Undo and explicit source Save.",
+  "author": "HaYanJongSeong",
+  "license": "GPL-3.0-or-later",
+  "entry": "plugin.wasm",
+  "abi": 1,
+  "minRustgisVersion": "0.7.0",
+  "permissions": [
+    "edit",
+    "files"
+  ],
+  "commands": [
+    {
+      "id": "undo-edit",
+      "label": "Undo Feature Edits",
+      "params": "{}: revert the last Quick Field Keys feature-edit group only; refuse changed values and locked fields; never writes source files"
+    },
+    {
+      "id": "previous-view",
+      "label": "Restore Previous Selection and View",
+      "params": "{}: restore the designated layer selection and camera without undoing feature edits"
+    },
+    {
+      "id": "state",
+      "label": "Refresh",
+      "params": "{}"
+    },
+    {
+      "id": "capture",
+      "label": "Rebuild Navigation",
+      "params": "{}",
+      "icon": "select"
+    },
+    {
+      "id": "previous",
+      "label": "Previous",
+      "params": "{}",
+      "icon": "time_prev"
+    },
+    {
+      "id": "next",
+      "label": "Next",
+      "params": "{}",
+      "icon": "time_next"
+    },
+    {
+      "id": "apply-1",
+      "label": "Apply 1",
+      "params": "{}"
+    },
+    {
+      "id": "apply-2",
+      "label": "Apply 2",
+      "params": "{}"
+    },
+    {
+      "id": "apply-3",
+      "label": "Apply 3",
+      "params": "{}"
+    },
+    {
+      "id": "apply-4",
+      "label": "Apply 4",
+      "params": "{}"
+    },
+    {
+      "id": "apply-5",
+      "label": "Apply 5",
+      "params": "{}"
+    },
+    {
+      "id": "apply-6",
+      "label": "Apply 6",
+      "params": "{}"
+    },
+    {
+      "id": "apply-7",
+      "label": "Apply 7",
+      "params": "{}"
+    },
+    {
+      "id": "apply-8",
+      "label": "Apply 8",
+      "params": "{}"
+    },
+    {
+      "id": "apply-9",
+      "label": "Apply 9",
+      "params": "{}"
+    },
+    {
+      "id": "first",
+      "label": "First",
+      "params": "{}",
+      "icon": "time_first"
+    },
+    {
+      "id": "last",
+      "label": "Last",
+      "params": "{}",
+      "icon": "time_last"
+    },
+    {
+      "id": "configure",
+      "label": "Values",
+      "params": "{layer,identity,slot:1..9,field?,value?,null?:bool,unassign?:bool}: configure one slot without editing features; preserve other slots for the same target/identity",
+      "form": [
+        {
+          "name": "layer",
+          "label": "Layer",
+          "kind": "vectorLayer",
+          "required": true
+        },
+        {
+          "name": "identity",
+          "label": "Unique identity field",
+          "kind": "field",
+          "required": true
+        },
+        {
+          "name": "slot",
+          "label": "Preset slot",
+          "kind": "choice",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "default": "1",
+          "required": true
+        },
+        {
+          "name": "field",
+          "label": "Field",
+          "kind": "field"
+        },
+        {
+          "name": "value",
+          "label": "Value",
+          "kind": "text"
+        },
+        {
+          "name": "null",
+          "label": "NULL",
+          "kind": "bool",
+          "default": false
+        },
+        {
+          "name": "unassign",
+          "label": "Unassign selected slot",
+          "kind": "bool",
+          "default": false
+        }
+      ],
+      "icon": "calculate"
+    },
+    {
+      "id": "visible-fields",
+      "label": "Visible Columns",
+      "params": "{}: show or hide the column chooser; does not edit values",
+      "icon": "field"
+    },
+    {
+      "id": "set-visible-fields",
+      "label": "Stage Column Choices",
+      "params": "{}: stage checkbox changes without applying them"
+    },
+    {
+      "id": "columns-all",
+      "label": "Select All Columns",
+      "params": "{}"
+    },
+    {
+      "id": "columns-none",
+      "label": "Deselect All Columns",
+      "params": "{}"
+    },
+    {
+      "id": "apply-visible-fields",
+      "label": "Apply Column Choices",
+      "params": "{}: apply and remember the displayed columns for this layer"
+    },
+    {
+      "id": "cancel-visible-fields",
+      "label": "Cancel Column Choices",
+      "params": "{}: close without changing the displayed columns or saved preferences"
+    },
+    {
+      "id": "save",
+      "label": "Save Layer to Source",
+      "params": "{}: immediately publish all pending edits of the designated layer, including edits from other tools, to its original local SHP/GeoJSON source; not project Save; external writes cannot be undone",
+      "icon": "save"
+    },
+    {
+      "id": "options",
+      "label": "Options",
+      "params": "{identity?:text,reset-presets?:bool}: session-only identity guard; keyboard bindings remain in RustGIS Settings > Keyboard Shortcuts",
+      "icon": "settings",
+      "form": [
+        {
+          "name": "identity",
+          "label": "Unique identity field (blank keeps current)",
+          "kind": "text",
+          "help": "For shortcut bindings use RustGIS Settings > Keyboard Shortcuts. The current SDK cannot open that editor from this panel."
+        },
+        {
+          "name": "reset-presets",
+          "label": "Confirm clearing presets and locks when changing identity",
+          "kind": "bool",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "rebuild-navigation",
+      "label": "Apply Filter and Refresh",
+      "params": "{}",
+      "icon": "select"
+    },
+    {
+      "id": "clear-filter",
+      "label": "Clear",
+      "params": "{}"
+    },
+    {
+      "id": "choose-layer",
+      "label": "Choose Layer",
+      "params": "{}"
+    },
+    {
+      "id": "set-locks",
+      "label": "Update Field Locks",
+      "params": "{}"
+    },
+    {
+      "id": "edit-current",
+      "label": "Edit Current Feature",
+      "params": "{}"
+    },
+    {
+      "id": "zoom-current",
+      "label": "Zoom",
+      "params": "{}",
+      "icon": "zoom_sel"
+    }
+  ],
+  "panel": {
+    "title": "Quick Field Keys",
+    "state": "state",
+    "items": [
+      {
+        "kind": "choice",
+        "id": "layer",
+        "command": "choose-layer"
+      },
+      {
+        "kind": "form",
+        "id": "filter"
+      },
+      {
+        "kind": "button",
+        "command": "rebuild-navigation",
+        "label": "↻",
+        "help": "Apply filter and refresh navigation. Keeps layer edits but clears plugin Undo history."
+      },
+      {
+        "kind": "button",
+        "command": "clear-filter",
+        "label": "Clear filter"
+      },
+      {
+        "kind": "text",
+        "id": "status",
+        "text": "Choose a layer to prepare editing."
+      },
+      {
+        "kind": "button",
+        "command": "first",
+        "label": "|◀",
+        "help": "First captured feature"
+      },
+      {
+        "kind": "button",
+        "command": "previous",
+        "label": "◀",
+        "help": "Previous captured feature"
+      },
+      {
+        "kind": "button",
+        "command": "next",
+        "label": "▶",
+        "help": "Next captured feature"
+      },
+      {
+        "kind": "button",
+        "command": "last",
+        "label": "▶|",
+        "help": "Last captured feature"
+      },
+      {
+        "kind": "button",
+        "command": "previous-view",
+        "label": "Previous selection / view",
+        "help": "Restore the selection and map view from before the last navigation step. Keeps feature edits and the navigation filter. Unavailable after changing the target or projection."
+      },
+      {
+        "kind": "form",
+        "id": "view"
+      },
+      {
+        "kind": "button",
+        "command": "zoom-current"
+      },
+      {
+        "kind": "button",
+        "command": "undo-edit",
+        "label": "Undo feature edits",
+        "help": "Revert the last plugin edit group and reveal its feature. Consecutive edits to the same feature are grouped. Refuses external changes or locked fields. Session-only, limited to 4000 bytes; Save, target change and navigation reload clear the history. Does not undo other tools or saved source files."
+      },
+      {
+        "kind": "button",
+        "command": "configure",
+        "label": "= Values",
+        "help": "Configure one preset slot without editing feature values."
+      },
+      {
+        "kind": "button",
+        "command": "visible-fields",
+        "label": "👁︎ Columns",
+        "help": "Choose columns to show and edit for this layer. Hiding a column does not change its values or preset assignment."
+      },
+      {
+        "kind": "button",
+        "command": "save",
+        "label": "💾︎ Save",
+        "help": "Immediately save all pending edits of the designated layer to its original local SHP/GeoJSON source. Includes edits from other tools; no confirmation dialog; external writes cannot be undone. Not project Save."
+      },
+      {
+        "kind": "button",
+        "command": "options",
+        "label": "⚙ Options",
+        "help": "Configure the identity guard. Keyboard bindings use RustGIS Settings > Keyboard Shortcuts; direct opening is not supported by the SDK."
+      },
+      {
+        "kind": "text",
+        "id": "columns-help",
+        "text": "Choose columns, then Apply or Cancel. Only column names are remembered; values and presets are unchanged."
+      },
+      {
+        "kind": "form",
+        "id": "columns",
+        "command": "set-visible-fields"
+      },
+      {
+        "kind": "button",
+        "command": "columns-all",
+        "label": "Select all"
+      },
+      {
+        "kind": "button",
+        "command": "columns-none",
+        "label": "Deselect all"
+      },
+      {
+        "kind": "button",
+        "command": "apply-visible-fields",
+        "label": "Apply columns"
+      },
+      {
+        "kind": "button",
+        "command": "cancel-visible-fields",
+        "label": "Cancel"
+      },
+      {
+        "kind": "form",
+        "id": "attributes",
+        "command": "edit-current"
+      },
+      {
+        "kind": "form",
+        "id": "locks",
+        "label": "Plugin field locks",
+        "command": "set-locks"
+      },
+      {
+        "kind": "text",
+        "id": "save-note",
+        "text": "Press Save to apply changes to the original file."
+      },
+      {
+        "kind": "checkbox",
+        "id": "columns-open",
+        "default": false,
+        "label": "Internal column chooser visibility"
+      },
+      {
+        "kind": "form",
+        "id": "config"
+      },
+      {
+        "kind": "form",
+        "id": "session"
+      },
+      {
+        "kind": "form",
+        "id": "edit-history"
+      }
+    ],
+    "icon": "pane_right"
+  },
+  "homepage": "https://github.com/HaYanJongSeong/rustgis-quick-field-keys",
+  "tab": {
+    "label": "Field Keys",
+    "groups": [
+      {
+        "label": "Field Navigation",
+        "layout": "small",
+        "items": [
+          "panel",
+          "configure",
+          "visible-fields",
+          "save",
+          "options",
+          "first",
+          "previous",
+          "next",
+          "last",
+          "zoom-current"
+        ]
+      }
+    ]
+  }
+}
